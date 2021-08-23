@@ -1,0 +1,45 @@
+
+* {
+    margin: 0;
+	padding: 0;
+}
+
+.header-menu {
+    background-color: #dee2e6;
+    height: 4rem;
+}
+
+.title-header {
+    margin-left: 1rem;
+    padding-top: 13px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.main-section, .footer-menu {
+    padding-top: 50px;
+    text-align: center;
+    font-family: 'Kaisei Opti', serif;
+}
+
+.main-section h2 {
+    padding-bottom: 1rem;
+}
+
+.main-section button {
+    margin-top: 1rem;
+    padding: 0.8rem 3rem;
+    background-color: #40c057;
+    border-style: none;
+    border-radius: 0.2rem;
+    opacity: 0.6;
+    transition: 0.3s;
+}
+
+.main-section button:hover {
+    opacity: 1;
+}
+
+.footer-menu {
+    background-color: #495057;
+    margin-top: 100%;
+}
