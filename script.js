@@ -1,5 +1,6 @@
 const API_URL = 'https://thronesapi.com/api/v2/Characters';
 
+const logo = document.querySelector('.title-header');
 const main = document.querySelector('.main-section');
 const btnIniciar = document.querySelector('.btn-iniciar');
 
