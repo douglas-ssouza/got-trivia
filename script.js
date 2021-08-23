@@ -16,19 +16,56 @@ const createQuizElements = (element, className) => {
   return newElement;
 };
 
+// Cria 3 numeros aleatorios que vão servir pra achar 3 personagens aleatorios incorretos
+const randomNumb = () => {
+  const array = [];
+
+  for(let i = 0; i < 4; i += 1){
+    const random = Math.floor(Math.random() * 52); // Cria numeros aleatorios
+    if(array.includes(random)){
+      Math.floor(Math.random() * 52)
+    }
+    array.push(random);
+  }
+  console.log(array)
+  return array
+}
+
+// Cria um personagem certo
+// const randomizeChar = async () => {
+//   const results = await fetchCharacters();
+//   const randomCorrect = randomNumb();
+//   const char = results.filter((character) => character.id === randomCorrect[0]);
+//   console.log(char)
+//   return char;
+// }
+
 const addInfo = async () => {
   const results = await fetchCharacters();
-  console.log(results);
-  const img = document.querySelector('.character-image');
-  img.src = results[0].imageUrl;
-  const btn = document.querySelector('.character-name');
-  btn.innerText = results[0].fullName;
+  const arrayNumbs = randomNumb()
+  // console.log(results);
+  // Gera personagem correto
+  const imgCorrect = document.querySelector('.character-image')
+  imgCorrect.src = results[arrayNumbs[0]].imageUrl
+  const txtCorrect = document.querySelector('.character-name')
+  txtCorrect.innerText = results[arrayNumbs[0]].fullName;
+
+  const btnQuiz = document.querySelector('.quiz-element2');
+  btnQuiz.innerText = results[arrayNumbs[1]].fullName;
+  const btnQuiz2 = document.querySelector('.quiz-element3');
+  btnQuiz2.innerText = results[arrayNumbs[2]].fullName;
+  const btnQuiz3 = document.querySelector('.quiz-element4');
+  btnQuiz3.innerText = results[arrayNumbs[3]].fullName;
 }
 
 const startGame = async () => {
   main.innerHTML = '';
   main.appendChild(createQuizElements('img', 'character-image'));
   main.appendChild(createQuizElements('button', 'character-name'));
+  main.appendChild(createQuizElements('button', 'quiz-element2'));
+  main.appendChild(createQuizElements('button', 'quiz-element3'));
+  main.appendChild(createQuizElements('button', 'quiz-element4'));
+
   await addInfo();
 };
 btnIniciar.addEventListener('click', startGame);
