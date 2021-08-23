@@ -38,3 +38,8 @@
 .main-section button:hover {
     opacity: 1;
 }
+
+.footer-menu {
+    background-color: #495057;
+    margin-top: 100%;
+}
