@@ -43,8 +43,11 @@ const randomNumb = () => {
 const addInfo = async () => {
   const results = await fetchCharacters();
   const arrayNumbs = randomNumb()
-  
+
   // Gera personagem correto
+  const question = document.querySelector('.quiz-question');
+  question.innerHTML = 'Who is this <span>?</span>';
+
   const imgCorrect = document.querySelector('.character-image')
   imgCorrect.src = results[arrayNumbs[0]].imageUrl
   const txtCorrect = document.querySelector('.character-name')
@@ -69,6 +72,7 @@ const startGame = async () => {
 
   const rightSection = document.createElement('section');
   rightSection.className = 'right-section';
+  rightSection.appendChild(createQuizElements('h2', 'quiz-question'));
   rightSection.appendChild(createQuizElements('button', 'character-name'));
   rightSection.appendChild(createQuizElements('button', 'quiz-element2'));
   rightSection.appendChild(createQuizElements('button', 'quiz-element3'));

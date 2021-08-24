@@ -15,6 +15,9 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-image: url(./images/background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .header-menu {
@@ -31,12 +34,25 @@ body {
   text-align: center;
 }
 
+.main-section {
+  background-color: hsla(210, 14%, 89%, 0.247);
+  padding: 2%;
+}
+
+.main-section span {
+  font-size: 36px;
+}
+
 .main-section h1 {
   padding-bottom: 1rem;
 }
 
 .left-section {
   margin-right: 5%;
+}
+
+.character-image {
+  height: 400px;
 }
 
 .right-section {
@@ -61,5 +77,6 @@ body {
 .footer-menu {
   background-color: #495057;
   margin-top: 1%;
-  padding: 2%;
+  padding: 0.8%;
+  font-size: 0.8rem;
 }
