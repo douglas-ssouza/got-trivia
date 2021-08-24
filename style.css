@@ -10,25 +10,38 @@
 
 body {
   font-family: 'gotFont';
+  word-spacing: 15px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .header-menu {
   background-color: #dee2e6;
-  height: 4rem;
-}
-
-.title-header {
-  margin-left: 1rem;
-  padding-top: 13px;
-}
-
-.main-section, .footer-menu {
-  padding-top: 50px;
+  padding: 1%;
   text-align: center;
 }
 
-.main-section h2 {
+.image-logo {
+  width: 20%;
+}
+
+.main-section, .footer-menu {
+  text-align: center;
+}
+
+.main-section h1 {
   padding-bottom: 1rem;
+}
+
+.left-section {
+  margin-right: 5%;
+}
+
+.right-section {
+  display: flex;
+  flex-direction: column;
 }
 
 .main-section button {
