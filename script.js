@@ -60,11 +60,20 @@ const addInfo = async () => {
 
 const startGame = async () => {
   main.innerHTML = '';
-  main.appendChild(createQuizElements('img', 'character-image'));
-  main.appendChild(createQuizElements('button', 'character-name'));
-  main.appendChild(createQuizElements('button', 'quiz-element2'));
-  main.appendChild(createQuizElements('button', 'quiz-element3'));
-  main.appendChild(createQuizElements('button', 'quiz-element4'));
+
+  const leftSection = document.createElement('section');
+  leftSection.classList.add = 'left-section';
+  leftSection.appendChild(createQuizElements('img', 'character-image'));
+
+  const rightSection = document.createElement('section');
+  rightSection.classList.add = 'right-section';
+  rightSection.appendChild(createQuizElements('button', 'character-name'));
+  rightSection.appendChild(createQuizElements('button', 'quiz-element2'));
+  rightSection.appendChild(createQuizElements('button', 'quiz-element3'));
+  rightSection.appendChild(createQuizElements('button', 'quiz-element4'));
+
+  main.appendChild(leftSection);
+  main.appendChild(rightSection);
 
   await addInfo();
 };
