@@ -10,9 +10,22 @@ const fetchCharacters = async () => {
   return results;
 };
 
-const createQuizElements = (element, className) => {
-  const newElement = document.createElement(element);
-  newElement.className = className;
+const createQuizImage = () => {
+  const newImage = document.createElement('img');
+  newImage.classList.add('character-image');
+  return newImage;
+};
+
+const createQuizQuestion = () =>  {
+  const newElement = document.createElement('h2');
+  newElement.classList.add('quiz-question');
+  newElement.innerHTML = 'Who is this <span>?</span>';
+  return newElement;
+};
+
+const createQuizButtons = (className) => {
+  const newElement = document.createElement('button');
+  newElement.classList.add(className);
   return newElement;
 };
 
@@ -31,26 +44,14 @@ const randomNumb = () => {
   return array
 }
 
-// Cria um personagem certo
-// const randomizeChar = async () => {
-//   const results = await fetchCharacters();
-//   const randomCorrect = randomNumb();
-//   const char = results.filter((character) => character.id === randomCorrect[0]);
-//   console.log(char)
-//   return char;
-// }
-
 const addInfo = async () => {
   const results = await fetchCharacters();
   const arrayNumbs = randomNumb()
 
   // Gera personagem correto
-  const question = document.querySelector('.quiz-question');
-  question.innerHTML = 'Who is this <span>?</span>';
-
   const imgCorrect = document.querySelector('.character-image')
   imgCorrect.src = results[arrayNumbs[0]].imageUrl
-  const txtCorrect = document.querySelector('.character-name')
+  const txtCorrect = document.querySelector('.quiz-element1')
   txtCorrect.innerText = results[arrayNumbs[0]].fullName;
 
   const btnQuiz = document.querySelector('.quiz-element2');
@@ -61,25 +62,32 @@ const addInfo = async () => {
   btnQuiz3.innerText = results[arrayNumbs[3]].fullName;
 }
 
-const startGame = async () => {
+const eraseMainContent = () => {
+  sessionStorage.setItem('main', main.innerHTML);
   main.innerHTML = '';
   main.style.display = 'flex';
   main.style.justifyContent = 'center';
+}
+
+const startGame = async () => {
+  eraseMainContent();
 
   const leftSection = document.createElement('section');
-  leftSection.className = 'left-section';
-  leftSection.appendChild(createQuizElements('img', 'character-image'));
+  leftSection.classList.add('left-section');
+  leftSection.appendChild(createQuizImage());
 
   const rightSection = document.createElement('section');
-  rightSection.className = 'right-section';
-  rightSection.appendChild(createQuizElements('h2', 'quiz-question'));
-  rightSection.appendChild(createQuizElements('button', 'character-name'));
-  rightSection.appendChild(createQuizElements('button', 'quiz-element2'));
-  rightSection.appendChild(createQuizElements('button', 'quiz-element3'));
-  rightSection.appendChild(createQuizElements('button', 'quiz-element4'));
+  rightSection.classList.add('right-section');
+  rightSection.appendChild(createQuizQuestion());
+  rightSection.appendChild(createQuizButtons('quiz-element1'));
+  rightSection.appendChild(createQuizButtons('quiz-element2'));
+  rightSection.appendChild(createQuizButtons('quiz-element3'));
+  rightSection.appendChild(createQuizButtons('quiz-element4'));
 
   main.appendChild(leftSection);
   main.appendChild(rightSection);
+
+  document.querySelector('.quiz-question').innerHTML = 'Who is this <span>?</span>';
 
   await addInfo();
 };
