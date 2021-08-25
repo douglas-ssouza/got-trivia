@@ -69,13 +69,14 @@ const eraseMainContent = () => {
   main.style.justifyContent = 'center';
 }
 
-const startGame = async () => {
-  eraseMainContent();
-
+const createLeftSection = () => {
   const leftSection = document.createElement('section');
   leftSection.classList.add('left-section');
   leftSection.appendChild(createQuizImage());
+  return leftSection;
+};
 
+const createRightSection = () => {
   const rightSection = document.createElement('section');
   rightSection.classList.add('right-section');
   rightSection.appendChild(createQuizQuestion());
@@ -83,9 +84,14 @@ const startGame = async () => {
   rightSection.appendChild(createQuizButtons('quiz-element2'));
   rightSection.appendChild(createQuizButtons('quiz-element3'));
   rightSection.appendChild(createQuizButtons('quiz-element4'));
+  return rightSection;
+};
 
-  main.appendChild(leftSection);
-  main.appendChild(rightSection);
+const startGame = async () => {
+  eraseMainContent();
+
+  main.appendChild(createLeftSection());
+  main.appendChild(createRightSection());
 
   document.querySelector('.quiz-question').innerHTML = 'Who is this <span>?</span>';
 
