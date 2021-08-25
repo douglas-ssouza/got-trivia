@@ -3,6 +3,10 @@ const API_URL = 'https://thronesapi.com/api/v2/Characters';
 const logo = document.querySelector('.title-header');
 const main = document.querySelector('.main-section');
 const btnIniciar = document.querySelector('.btn-iniciar');
+const questions = {
+  made: 0,
+  right: 0,
+};
 
 const fetchCharacters = async () => {
   const response = await fetch(API_URL);
@@ -26,21 +30,21 @@ const createQuizQuestion = () =>  {
 const createQuizButtons = (className) => {
   const newElement = document.createElement('button');
   newElement.classList.add(className);
+  newElement.classList.add('answer');
   return newElement;
 };
 
-// Cria 3 numeros aleatorios que vão servir pra achar 3 personagens aleatorios incorretos
+// Cria 4 numeros aleatorios que vão servir pra achar 4 personagens aleatorios
 const randomNumb = () => {
   const array = [];
 
   for(let i = 0; i < 4; i += 1){
     const random = Math.floor(Math.random() * 52); // Cria numeros aleatorios
     if(array.includes(random)){
-      Math.floor(Math.random() * 52)
+      array[i] = Math.floor(Math.random() * 52)
     }
     array.push(random);
   }
-  console.log(array)
   return array
 }
 
@@ -51,14 +55,14 @@ const addInfo = async () => {
   // Gera personagem correto
   const imgCorrect = document.querySelector('.character-image')
   imgCorrect.src = results[arrayNumbs[0]].imageUrl
-  const txtCorrect = document.querySelector('.quiz-element1')
+  
+  const txtCorrect = document.querySelector('.quiz-button1')
   txtCorrect.innerText = results[arrayNumbs[0]].fullName;
-
-  const btnQuiz = document.querySelector('.quiz-element2');
+  const btnQuiz = document.querySelector('.quiz-button2');
   btnQuiz.innerText = results[arrayNumbs[1]].fullName;
-  const btnQuiz2 = document.querySelector('.quiz-element3');
+  const btnQuiz2 = document.querySelector('.quiz-button3');
   btnQuiz2.innerText = results[arrayNumbs[2]].fullName;
-  const btnQuiz3 = document.querySelector('.quiz-element4');
+  const btnQuiz3 = document.querySelector('.quiz-button4');
   btnQuiz3.innerText = results[arrayNumbs[3]].fullName;
 }
 
@@ -67,6 +71,12 @@ const eraseMainContent = () => {
   main.innerHTML = '';
   main.style.display = 'flex';
   main.style.justifyContent = 'center';
+}
+
+const returnToMain = () => {
+  main.innerHTML = sessionStorage.getItem('main');
+  main.style.display = '';
+  document.querySelector('.btn-iniciar').addEventListener('click', startGame);
 }
 
 const createLeftSection = () => {
@@ -80,22 +90,40 @@ const createRightSection = () => {
   const rightSection = document.createElement('section');
   rightSection.classList.add('right-section');
   rightSection.appendChild(createQuizQuestion());
-  rightSection.appendChild(createQuizButtons('quiz-element1'));
-  rightSection.appendChild(createQuizButtons('quiz-element2'));
-  rightSection.appendChild(createQuizButtons('quiz-element3'));
-  rightSection.appendChild(createQuizButtons('quiz-element4'));
+  rightSection.appendChild(createQuizButtons('quiz-button1'));
+  rightSection.appendChild(createQuizButtons('quiz-button2'));
+  rightSection.appendChild(createQuizButtons('quiz-button3'));
+  rightSection.appendChild(createQuizButtons('quiz-button4'));
   return rightSection;
 };
 
-const startGame = async () => {
-  eraseMainContent();
+const showResult = () => {
+  main.innerHTML = '';
+  const result = document.createElement('h2');
+  result.innerHTML = `${questions.right}/${questions.made}`;
+  main.appendChild(result);
+}
 
+const setQuestion = async () => {
+  if (questions.made < 10) {
+    questions.made += 1;
+    await addInfo();
+    btn.addEventListener('click', setQuestion);
+  } else {
+    showResult();
+  }
+};
+
+const startGame = () => {
+  eraseMainContent();
   main.appendChild(createLeftSection());
   main.appendChild(createRightSection());
 
-  document.querySelector('.quiz-question').innerHTML = 'Who is this <span>?</span>';
+  document.querySelectorAll('.answer').forEach((btn) => {
+    btn.addEventListener('click', setQuestion);
+  })
 
-  await addInfo();
+  setQuestion();
 };
 btnIniciar.addEventListener('click', startGame);
 
