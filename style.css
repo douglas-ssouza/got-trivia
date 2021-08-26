@@ -1,6 +1,8 @@
 @font-face {
   font-family: 'gotFont';
   src: url('./game-of-thrones/Game-of-Thrones.ttf') format('truetype');
+  font-family: 'trajan-pro';
+  src: url('./fonts/trajan-pro.otf');
 }
 
 * {
@@ -8,26 +10,42 @@
 	padding: 0;
 }
 
+#myVideo {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+  opacity: 0.8;
+}
+
 body {
-  font-family: 'gotFont';
-  word-spacing: 15px;
+  font-family: 'trajan-pro';
+  /* word-spacing: 15px; */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-image: url(./images/background.jpg);
+  /* background-image: url(./images/background.jpg); */
+  background-color: black;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .header-menu {
-  background-color: #dee2e6;
+  background: rgb(0,0,0);
+  background: linear-gradient(180deg, rgba(0,0,0,1) 20%, rgba(255,255,255,0) 100%);
   padding: 1%;
   text-align: center;
 }
 
 .image-logo {
   width: 20%;
+  filter: invert(100%);
 }
 
 .main-section, .footer-menu {
@@ -35,7 +53,7 @@ body {
 }
 
 .main-section {
-  background-color: hsla(210, 14%, 89%, 0.247);
+  background-color: hsla(0, 0%, 100%, 0.603);
   padding: 2%;
 }
 
@@ -63,7 +81,19 @@ body {
 .main-section button {
   margin-top: 1rem;
   padding: 0.8rem 3rem;
-  background-color: #40c057;
+  background-color: #828686;
+  color: #ffffff;
+  border-style: none;
+  border-radius: 0.2rem;
+  opacity: 1;
+  transition: 0.3s;
+  font-weight: bolder;
+}
+
+.btn-iniciar {
+  margin-top: 1rem;
+  padding: 0.8rem 3rem;
+  background-color: #009419;
   border-style: none;
   border-radius: 0.2rem;
   opacity: 0.6;
@@ -71,7 +101,9 @@ body {
 }
 
 .main-section button:hover {
-  opacity: 1;
+  background-color: rgb(14, 209, 47);
+  flex-grow: 0.1;
+  cursor: pointer;
 }
 
 .footer-menu {
@@ -80,3 +112,4 @@ body {
   padding: 0.8%;
   font-size: 0.8rem;
 }
+
