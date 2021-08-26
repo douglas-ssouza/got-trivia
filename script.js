@@ -113,7 +113,6 @@ const setQuestion = async () => {
   } else {
     showResult();
   }
-  questions.made += 1;
 };
 
 const shuffleButtons = () => {
@@ -128,11 +127,12 @@ const startGame = () => {
   main.appendChild(createRightSection());
 
   document.querySelectorAll('.answer').forEach((btn) => {
-    btn.addEventListener('click', setQuestion);
     btn.addEventListener('click', (event) => {
       if (event.target.innerText === questions.answer) {
         questions.right += 1;
       }
+      questions.made += 1;
+      setQuestion();
     })
   })
 
