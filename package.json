@@ -1,0 +1,23 @@
+{
+  "name": "got-trivia",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/douglas-ssouza/got-trivia.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/douglas-ssouza/got-trivia/issues"
+  },
+  "homepage": "https://github.com/douglas-ssouza/got-trivia#readme",
+  "devDependencies": {
+    "jest": "^27.0.6"
+  }
+}
