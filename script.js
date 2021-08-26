@@ -1,6 +1,6 @@
 const API_URL = 'https://thronesapi.com/api/v2/Characters';
 
-const logo = document.querySelector('.title-header');
+const logo = document.querySelector('.image-logo');
 const main = document.querySelector('.main-section');
 const btnIniciar = document.querySelector('.btn-iniciar');
 const questions = {
@@ -52,7 +52,6 @@ const addInfo = async () => {
   const results = await fetchCharacters();
   const arrayNumbs = randomNumb()
 
-  // Gera personagem correto
   const imgCharacter = document.querySelector('.character-image')
   imgCharacter.src = results[arrayNumbs[0]].imageUrl
   
@@ -80,6 +79,7 @@ const returnToMain = () => {
   main.style.display = '';
   document.querySelector('.btn-iniciar').addEventListener('click', startGame);
 }
+logo.addEventListener('click', returnToMain);
 
 const createLeftSection = () => {
   const leftSection = document.createElement('section');
@@ -139,5 +139,6 @@ const startGame = () => {
   setQuestion();
 };
 btnIniciar.addEventListener('click', startGame);
+
 
   

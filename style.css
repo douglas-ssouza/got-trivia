@@ -46,6 +46,10 @@ body {
   filter: invert(100%);
 }
 
+.image-logo:hover {
+  cursor: pointer;
+}
+
 .main-section, .footer-menu {
   text-align: center;
 }
