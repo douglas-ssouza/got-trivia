@@ -108,11 +108,18 @@ const showResult = () => {
 
 const setQuestion = async () => {
   if (questions.made < 10) {
-    questions.made += 1;
     await addInfo();
+    shuffleButtons();
   } else {
     showResult();
   }
+  questions.made += 1;
+};
+
+const shuffleButtons = () => {
+  document.querySelectorAll('.answer').forEach((btn) => {
+    btn.style.order = Math.floor(Math.random() * 4);
+  });
 };
 
 const startGame = () => {
