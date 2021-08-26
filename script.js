@@ -140,5 +140,20 @@ const startGame = () => {
 };
 btnIniciar.addEventListener('click', startGame);
 
-
+module.exports = {
+  fetchCharacters,
+  createQuizImage,
+  createQuizQuestion,
+  createQuizButtons,
+  randomNumb,
+  addInfo,
+  eraseMainContent,
+  returnToMain,
+  createLeftSection,
+  createRightSection,
+  showResult,
+  setQuestion,
+  shuffleButtons,
+  startGame,
+};
   
