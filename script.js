@@ -53,17 +53,19 @@ const addInfo = async () => {
   const arrayNumbs = randomNumb()
 
   // Gera personagem correto
-  const imgCorrect = document.querySelector('.character-image')
-  imgCorrect.src = results[arrayNumbs[0]].imageUrl
+  const imgCharacter = document.querySelector('.character-image')
+  imgCharacter.src = results[arrayNumbs[0]].imageUrl
   
-  const txtCorrect = document.querySelector('.quiz-button1')
-  txtCorrect.innerText = results[arrayNumbs[0]].fullName;
-  const btnQuiz = document.querySelector('.quiz-button2');
-  btnQuiz.innerText = results[arrayNumbs[1]].fullName;
-  const btnQuiz2 = document.querySelector('.quiz-button3');
-  btnQuiz2.innerText = results[arrayNumbs[2]].fullName;
-  const btnQuiz3 = document.querySelector('.quiz-button4');
-  btnQuiz3.innerText = results[arrayNumbs[3]].fullName;
+  const btnQuiz1 = document.querySelector('.quiz-button1')
+  btnQuiz1.innerText = results[arrayNumbs[0]].fullName;
+  const btnQuiz2 = document.querySelector('.quiz-button2');
+  btnQuiz2.innerText = results[arrayNumbs[1]].fullName;
+  const btnQuiz3 = document.querySelector('.quiz-button3');
+  btnQuiz3.innerText = results[arrayNumbs[2]].fullName;
+  const btnQuiz4 = document.querySelector('.quiz-button4');
+  btnQuiz4.innerText = results[arrayNumbs[3]].fullName;
+
+  questions.answer = btnQuiz1.innerText;
 }
 
 const eraseMainContent = () => {
@@ -108,7 +110,6 @@ const setQuestion = async () => {
   if (questions.made < 10) {
     questions.made += 1;
     await addInfo();
-    btn.addEventListener('click', setQuestion);
   } else {
     showResult();
   }
@@ -121,6 +122,11 @@ const startGame = () => {
 
   document.querySelectorAll('.answer').forEach((btn) => {
     btn.addEventListener('click', setQuestion);
+    btn.addEventListener('click', (event) => {
+      if (event.target.innerText === questions.answer) {
+        questions.right += 1;
+      }
+    })
   })
 
   setQuestion();
