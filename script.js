@@ -23,7 +23,7 @@ const createQuizImage = () => {
 const createQuizQuestion = () =>  {
   const newElement = document.createElement('h2');
   newElement.classList.add('quiz-question');
-  newElement.innerHTML = 'Who is this <span>?</span>';
+  newElement.innerHTML = 'Who is this ?';
   return newElement;
 };
 
