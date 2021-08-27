@@ -76,13 +76,6 @@ const eraseMainContent = () => {
   main.style.justifyContent = 'center';
 }
 
-const returnToMain = () => {
-  main.innerHTML = sessionStorage.getItem('main');
-  main.style.display = '';
-  document.querySelector('.btn-iniciar').addEventListener('click', startGame);
-}
-logo.addEventListener('click', returnToMain);
-
 const createLeftSection = () => {
   const leftSection = document.createElement('section');
   leftSection.classList.add('left-section');
