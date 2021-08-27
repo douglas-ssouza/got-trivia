@@ -1,5 +1,6 @@
 const API_URL = 'https://thronesapi.com/api/v2/Characters';
 
+
 const logo = document.querySelector('.image-logo');
 const main = document.querySelector('.main-section');
 const btnIniciar = document.querySelector('.btn-iniciar');
@@ -34,7 +35,7 @@ const createQuizButtons = (className) => {
   return newElement;
 };
 
-// Cria 4 numeros aleatorios que vão servir pra achar 4 personagens aleatorios
+// Cria N numeros aleatorios que vão servir pra achar 4 personagens aleatorios
 const randomNumb = () => {
   const array = [];
 
@@ -52,6 +53,7 @@ const addInfo = async () => {
   const results = await fetchCharacters();
   const arrayNumbs = randomNumb()
 
+  // Gera personagem correto
   const imgCharacter = document.querySelector('.character-image')
   imgCharacter.src = results[arrayNumbs[0]].imageUrl
   
@@ -102,7 +104,17 @@ const createRightSection = () => {
 const showResult = () => {
   main.innerHTML = '';
   const result = document.createElement('h2');
-  result.innerHTML = `${questions.right}/${questions.made}`;
+  result.innerHTML = ``;
+  if(questions.right >= 8){
+    main.innerHTML = `<p>${questions.right}/${questions.made} 
+    <br> Parabéns você é realmente um fã!</p>`
+  } else if(questions.right >= 4 && questions.right < 8){
+    main.innerHTML = `<p>${questions.right}/${questions.made} 
+    <br> Tá precisando assistir mais hein?</p>`
+  } else {
+    main.innerHTML = `<p>${questions.right}/${questions.made} 
+    <br> Pontuação ficou bem baixa, mas não desista</p>`
+  }
   main.appendChild(result);
 }
 
@@ -137,8 +149,12 @@ const startGame = () => {
   })
 
   setQuestion();
+  
 };
-btnIniciar.addEventListener('click', startGame);
+
+window.onload = async() => {
+  btnIniciar.addEventListener('click', startGame);
+}
 
 module.exports = {
   fetchCharacters,
@@ -156,4 +172,3 @@ module.exports = {
   shuffleButtons,
   startGame,
 };
-  
