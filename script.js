@@ -1,5 +1,7 @@
 const API_URL = 'https://thronesapi.com/api/v2/Characters';
 
+
+const logo = document.querySelector('.image-logo');
 const main = document.querySelector('.main-section');
 const btnIniciar = document.querySelector('.btn-iniciar');
 const questions = {
@@ -74,13 +76,12 @@ const eraseMainContent = () => {
   main.style.justifyContent = 'center';
 }
 
-// Não é utilizada ainda
-
-// const returnToMain = () => {
-//   main.innerHTML = sessionStorage.getItem('main');
-//   main.style.display = '';
-//   document.querySelector('.btn-iniciar').addEventListener('click', startGame);
-// }
+const returnToMain = () => {
+  main.innerHTML = sessionStorage.getItem('main');
+  main.style.display = '';
+  document.querySelector('.btn-iniciar').addEventListener('click', startGame);
+}
+logo.addEventListener('click', returnToMain);
 
 const createLeftSection = () => {
   const leftSection = document.createElement('section');
@@ -155,4 +156,19 @@ window.onload = async() => {
   btnIniciar.addEventListener('click', startGame);
 }
 
-module.exports = {startGame}
+module.exports = {
+  fetchCharacters,
+  createQuizImage,
+  createQuizQuestion,
+  createQuizButtons,
+  randomNumb,
+  addInfo,
+  eraseMainContent,
+  returnToMain,
+  createLeftSection,
+  createRightSection,
+  showResult,
+  setQuestion,
+  shuffleButtons,
+  startGame,
+};
