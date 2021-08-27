@@ -31,5 +31,8 @@ describe('Checa se a API está funcionando', () => {
 })
 
 describe('Verifica se a informação é adicionada', () => {
+  test('Testa uma vez a informação sendo adicionada', () => {
+    
+  })
 
 })
