@@ -157,7 +157,6 @@ module.exports = {
   randomNumb,
   addInfo,
   eraseMainContent,
-  returnToMain,
   createLeftSection,
   createRightSection,
   showResult,
