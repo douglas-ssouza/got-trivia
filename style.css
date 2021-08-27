@@ -1,13 +1,13 @@
 @font-face {
-  font-family: 'gotFont';
-  src: url('./game-of-thrones/Game-of-Thrones.ttf') format('truetype');
-  font-family: 'trajan-pro';
-  src: url('./fonts/trajan-pro.otf');
+  font-family: "gotFont";
+  src: url("./game-of-thrones/Game-of-Thrones.ttf") format("truetype");
+  font-family: "trajan-pro";
+  src: url("./fonts/trajan-pro.otf");
 }
 
 * {
   margin: 0;
-	padding: 0;
+  padding: 0;
 }
 
 #myVideo {
@@ -24,7 +24,7 @@
 }
 
 body {
-  font-family: 'trajan-pro';
+  font-family: "trajan-pro";
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -35,8 +35,12 @@ body {
 }
 
 .header-menu {
-  background: rgb(0,0,0);
-  background: linear-gradient(180deg, rgba(0,0,0,1) 20%, rgba(255,255,255,0) 100%);
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 1) 20%,
+    rgba(255, 255, 255, 0) 100%
+  );
   padding: 1%;
   text-align: center;
 }
@@ -50,7 +54,8 @@ body {
   cursor: pointer;
 }
 
-.main-section, .footer-menu {
+.main-section,
+.footer-menu {
   text-align: center;
 }
 
@@ -104,10 +109,28 @@ body {
   cursor: pointer;
 }
 
-@media (min-width: 320px) and (max-width: 725px){
+@media (min-width: 320px) and (max-width: 725px) {
+  .main-section {
+    background-color: hsla(0, 0%, 100%, 0.603);
+    padding: 2%;
+    flex-direction: column;
+  }
+  .main-section img {
+    max-width: 100%;
+    object-fit: cover;
+  }
   .image-logo {
     width: 60%;
     filter: invert(100%);
+  }
+  .right-section {
+    display: flex;
+    flex-direction: column;
+  }
+  .main-section button:hover {
+    background-color: #828686;
+    flex-grow: 0.1;
+    cursor: pointer;
   }
 }
 
@@ -117,4 +140,3 @@ body {
   padding: 0.8%;
   font-size: 0.8rem;
 }
-
