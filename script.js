@@ -1,6 +1,6 @@
 const API_URL = 'https://thronesapi.com/api/v2/Characters';
 
-const logo = document.querySelector('.title-header');
+const logo = document.querySelector('.image-logo');
 const main = document.querySelector('.main-section');
 const btnIniciar = document.querySelector('.btn-iniciar');
 const questions = {
@@ -23,7 +23,7 @@ const createQuizImage = () => {
 const createQuizQuestion = () =>  {
   const newElement = document.createElement('h2');
   newElement.classList.add('quiz-question');
-  newElement.innerHTML = 'Who is this <span>?</span>';
+  newElement.innerHTML = 'Who is this ?';
   return newElement;
 };
 
@@ -52,18 +52,19 @@ const addInfo = async () => {
   const results = await fetchCharacters();
   const arrayNumbs = randomNumb()
 
-  // Gera personagem correto
-  const imgCorrect = document.querySelector('.character-image')
-  imgCorrect.src = results[arrayNumbs[0]].imageUrl
+  const imgCharacter = document.querySelector('.character-image')
+  imgCharacter.src = results[arrayNumbs[0]].imageUrl
   
-  const txtCorrect = document.querySelector('.quiz-button1')
-  txtCorrect.innerText = results[arrayNumbs[0]].fullName;
-  const btnQuiz = document.querySelector('.quiz-button2');
-  btnQuiz.innerText = results[arrayNumbs[1]].fullName;
-  const btnQuiz2 = document.querySelector('.quiz-button3');
-  btnQuiz2.innerText = results[arrayNumbs[2]].fullName;
-  const btnQuiz3 = document.querySelector('.quiz-button4');
-  btnQuiz3.innerText = results[arrayNumbs[3]].fullName;
+  const btnQuiz1 = document.querySelector('.quiz-button1')
+  btnQuiz1.innerText = results[arrayNumbs[0]].fullName;
+  const btnQuiz2 = document.querySelector('.quiz-button2');
+  btnQuiz2.innerText = results[arrayNumbs[1]].fullName;
+  const btnQuiz3 = document.querySelector('.quiz-button3');
+  btnQuiz3.innerText = results[arrayNumbs[2]].fullName;
+  const btnQuiz4 = document.querySelector('.quiz-button4');
+  btnQuiz4.innerText = results[arrayNumbs[3]].fullName;
+
+  questions.answer = btnQuiz1.innerText;
 }
 
 const eraseMainContent = () => {
@@ -78,6 +79,7 @@ const returnToMain = () => {
   main.style.display = '';
   document.querySelector('.btn-iniciar').addEventListener('click', startGame);
 }
+logo.addEventListener('click', returnToMain);
 
 const createLeftSection = () => {
   const leftSection = document.createElement('section');
@@ -106,12 +108,17 @@ const showResult = () => {
 
 const setQuestion = async () => {
   if (questions.made < 10) {
-    questions.made += 1;
     await addInfo();
-    btn.addEventListener('click', setQuestion);
+    shuffleButtons();
   } else {
     showResult();
   }
+};
+
+const shuffleButtons = () => {
+  document.querySelectorAll('.answer').forEach((btn) => {
+    btn.style.order = Math.floor(Math.random() * 4);
+  });
 };
 
 const startGame = () => {
@@ -120,11 +127,33 @@ const startGame = () => {
   main.appendChild(createRightSection());
 
   document.querySelectorAll('.answer').forEach((btn) => {
-    btn.addEventListener('click', setQuestion);
+    btn.addEventListener('click', (event) => {
+      if (event.target.innerText === questions.answer) {
+        questions.right += 1;
+      }
+      questions.made += 1;
+      setQuestion();
+    })
   })
 
   setQuestion();
 };
 btnIniciar.addEventListener('click', startGame);
 
+module.exports = {
+  fetchCharacters,
+  createQuizImage,
+  createQuizQuestion,
+  createQuizButtons,
+  randomNumb,
+  addInfo,
+  eraseMainContent,
+  returnToMain,
+  createLeftSection,
+  createRightSection,
+  showResult,
+  setQuestion,
+  shuffleButtons,
+  startGame,
+};
   

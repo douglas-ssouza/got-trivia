@@ -25,12 +25,10 @@
 
 body {
   font-family: 'trajan-pro';
-  /* word-spacing: 15px; */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* background-image: url(./images/background.jpg); */
   background-color: black;
   background-repeat: no-repeat;
   background-size: cover;
@@ -48,6 +46,10 @@ body {
   filter: invert(100%);
 }
 
+.image-logo:hover {
+  cursor: pointer;
+}
+
 .main-section, .footer-menu {
   text-align: center;
 }
@@ -55,10 +57,6 @@ body {
 .main-section {
   background-color: hsla(0, 0%, 100%, 0.603);
   padding: 2%;
-}
-
-.main-section span {
-  font-size: 36px;
 }
 
 .main-section h1 {
